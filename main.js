@@ -14,9 +14,8 @@ const menuItems = [
     label: "File",
     submenu: [
       {
-        label: "New Window",
+        label: "Open Camera",
         click: async () => {
-          // await shell.openExternal("https://bitfumes.com");
           const win2 = new BrowserWindow({
             height: 300,
             width: 400,
@@ -25,8 +24,8 @@ const menuItems = [
             movable: false,
           });
 
-          win2.loadFile("index2.html");
-          // win2.loadURL("https://bitfumes.com");
+          // win2.webContents.openDevTools();
+          win2.loadFile("camera.html");
           win2.once("ready-to-show", () => win2.show());
         },
       },
