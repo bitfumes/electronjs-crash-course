@@ -17,14 +17,12 @@ const menuItems = [
         label: "Open Camera",
         click: async () => {
           const win2 = new BrowserWindow({
-            height: 300,
-            width: 400,
+            height: 500,
+            width: 800,
             show: false,
-            backgroundColor: "#2e2c29",
-            movable: false,
           });
 
-          // win2.webContents.openDevTools();
+          win2.webContents.openDevTools();
           win2.loadFile("camera.html");
           win2.once("ready-to-show", () => win2.show());
         },
