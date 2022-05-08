@@ -25,7 +25,9 @@ const menuItems = [
             },
           });
 
-          win2.webContents.openDevTools();
+          ipcMain.on("close-window-2", () => win2.close());
+
+          // win2.webContents.openDevTools();
           win2.loadFile("camera.html");
           win2.once("ready-to-show", () => win2.show());
         },
@@ -70,16 +72,16 @@ const createWindow = () => {
     },
   });
 
-  win.webContents.openDevTools();
+  ipcMain.on("set-image", (event, data) => {
+    win.webContents.send("get-image", data);
+  });
+
+  // win.webContents.openDevTools();
   win.loadFile("index.html");
 };
 
 app.whenReady().then(() => {
   createWindow();
-
-  ipcMain.on("set-image", (event, data) => {
-    console.log(data);
-  });
 
   app.on("activate", () => {
     if (BrowserWindow.getAllWindows().length === 0) createWindow();
