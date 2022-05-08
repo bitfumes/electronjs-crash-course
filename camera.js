@@ -8,7 +8,7 @@ captureButton.addEventListener("click", () => {
   canvas.height = video.videoHeight;
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   const dataURL = canvas.toDataURL();
-  imageTag.src = dataURL;
+  window.electronAPI.sendImage(dataURL);
 });
 
 navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
