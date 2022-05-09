@@ -9,6 +9,10 @@ captureButton.addEventListener("click", () => {
   canvas.getContext("2d").drawImage(video, 0, 0, canvas.width, canvas.height);
   const dataURL = canvas.toDataURL();
   window.electronAPI.sendImage(dataURL);
+
+  new Notification("Image Captured", {
+    body: "Image is successfully captured from live video.",
+  });
 });
 
 navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
